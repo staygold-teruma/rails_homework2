@@ -12,8 +12,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create(user_params)
-    redirect_to action: :index
+    @user = User.create(user_params)
+    # redirect_to action: :index
+    # redirect_to users_path, notice: "#{@user.name}を登録しました"
+    # redirect_toはaction指定でもパス指定でもOK
   end
 
   def edit
@@ -23,13 +25,13 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user.update(user_params)
-    redirect_to action: :index
+    # redirect_to users_path, notice: "#{user.name}を更新しました"
   end
 
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to action: :index
+    # redirect_to users_path, notice: "#{user.name}を削除しました"
   end
 
   private
